@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.liulishuo.image7niuloader"
         minSdkVersion 7
         targetSdkVersion 23
         versionCode 1
@@ -22,5 +21,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile project(':library-picassoloader')
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile project(':library')
 }
