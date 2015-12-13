@@ -1,7 +1,11 @@
 package com.liulishuo.image7niuload;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.DimenRes;
+import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
@@ -296,7 +300,7 @@ public class Image7NiuLoader {
         return !TextUtils.isEmpty(url) && url.startsWith("http");
     }
 
-    private Context getContext() {
+    protected Context getContext() {
         Context context = this.context;
 
         if (context == null) {
@@ -416,4 +420,84 @@ public class Image7NiuLoader {
         return getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
+    private Drawable defaultDrawable;
+    public Image7NiuLoader defaultD(@DrawableRes final int defaultDrawable) {
+        this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
+        return this;
+    }
+
+    public Image7NiuLoader defaultD(final Drawable defaultDrawable) {
+        this.defaultDrawable = defaultDrawable;
+        return this;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
+        Drawable drawable = null;
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                drawable = imageView.getResources().getDrawable(resourceId);
+            } else {
+                drawable = imageView.getContext().getDrawable(resourceId);
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "image7Niu getDrawable err", e);
+        }
+
+        return drawable;
+    }
+
+    public void attach(){
+        attachWithNoClear();
+        clear();
+    }
+
+    /**
+     * for download & attach image 2 imageView
+     */
+    public void attachWithNoClear() {
+        throw new UnsupportedOperationException(
+                "Required method instantiateItem was not overridden");
+    }
+
+    /**
+     * for just download image
+     */
+    public void fetch() {
+        throw new UnsupportedOperationException(
+                "Required method instantiateItem was not overridden");
+    }
+
+    protected ImageView getImageView() {
+        return imageView;
+    }
+
+    protected String getOriUrl() {
+        return oriUrl;
+    }
+
+    protected int getW() {
+        return w;
+    }
+
+    protected int getH() {
+        return h;
+    }
+
+    protected int getMode() {
+        return mode;
+    }
+
+    protected Format getFormat() {
+        return format;
+    }
+
+    protected Drawable getDefaultDrawable() {
+        return defaultDrawable;
+    }
+
+    protected List<Op> getOpList() {
+        return opList;
+    }
 }
