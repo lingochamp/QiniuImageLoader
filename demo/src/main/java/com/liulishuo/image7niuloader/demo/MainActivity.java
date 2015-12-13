@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.liulishuo.image7niuloader.util.PicassoLoader;
+
 /**
  * Created by Jacksgong on 12/13/15.
  */
@@ -18,25 +20,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         assignViews();
 
-        ImageLoader.display7Niu(image1, MOCK_DATA_URL)
+        PicassoLoader.display7Niu(image1, MOCK_DATA_URL)
                 .attach();
 
-        ImageLoader.display7Niu(image2, MOCK_DATA_URL)
+        PicassoLoader.display7Niu(image2, MOCK_DATA_URL)
                 .centerCrop()
                 .wR(R.dimen.image_2_width)
                 .attach();
 
-        ImageLoader.display7Niu(image3, MOCK_DATA_URL)
+        PicassoLoader.display7Niu(image3, MOCK_DATA_URL)
                 .size(dp2px(250))
                 .addOpBlur(40, 20)
                 .attach();
 
-        ImageLoader.display7Niu(image4, MOCK_DATA_URL)
+        PicassoLoader.display7Niu(image4, MOCK_DATA_URL)
                 .w(dp2px(270))
                 .addOpRotate(30)
                 .attach();
 
-        ImageLoader.display7Niu(image5, MOCK_DATA_URL)
+        PicassoLoader.display7Niu(image5, MOCK_DATA_URL)
                 .maxHalfW()
                 .attach();
 
