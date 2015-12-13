@@ -35,7 +35,7 @@ import javax.microedition.khronos.opengles.GL10;
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html
  */
-public class Image7NiuLoader {
+public class Image7NiuLoader<T extends Image7NiuLoader> {
 
     private final static String TAG = "Image7NiuLoader";
 
@@ -81,58 +81,58 @@ public class Image7NiuLoader {
         this.oriUrl = oriUrl;
     }
 
-    public Image7NiuLoader w(final int w) {
+    public T w(final int w) {
         this.w = w;
-        return this;
+        return (T) this;
     }
 
     /**
      * @param wResource
      * @return
      */
-    public Image7NiuLoader wR(@DimenRes final int wResource) {
+    public T wR(@DimenRes final int wResource) {
         if (getContext() == null) {
-            return this;
+            return (T) this;
         }
         this.w = getContext().getResources().getDimensionPixelSize(wResource);
-        return this;
+        return (T) this;
 
     }
 
-    public Image7NiuLoader size(final int size) {
+    public T size(final int size) {
         w(size);
         h(size);
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader sizeR(@DimenRes final int sizeResource) {
+    public T sizeR(@DimenRes final int sizeResource) {
         if (getContext() == null) {
-            return this;
+            return (T) this;
         }
 
         final int size = getContext().getResources().getDimensionPixelSize(sizeResource);
         size(size);
 
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader h(final int h) {
+    public T h(final int h) {
         this.h = h;
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader hR(@DimenRes final int hResource) {
+    public T hR(@DimenRes final int hResource) {
         if (getContext() == null) {
-            return this;
+            return (T) this;
         }
 
         this.h = getContext().getResources().getDimensionPixelSize(hResource);
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader mode(final int mode) {
+    public T mode(final int mode) {
         this.mode = mode;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -140,11 +140,11 @@ public class Image7NiuLoader {
      *
      * @return
      */
-    public Image7NiuLoader fitXY() {
+    public T fitXY() {
         return mode(MODE_FIT_XY);
     }
 
-    public Image7NiuLoader centerCrop() {
+    public T centerCrop() {
         return mode(MODE_CENTER_CROP);
     }
 
@@ -152,7 +152,7 @@ public class Image7NiuLoader {
      * @return
      * @see #MODE_FORCE_ORIGIN
      */
-    public Image7NiuLoader forceOrigin() {
+    public T forceOrigin() {
         return mode(MODE_FORCE_ORIGIN);
     }
 
@@ -260,7 +260,7 @@ public class Image7NiuLoader {
         }
 
 
-//        Log.d(this, String.format("【oriUrl】: %s 【url】: %s , (w: %d, h: %d)", oriUrl, u, w, h));
+        Log.d(TAG, String.format("【oriUrl】: %s 【url】: %s , (w: %d, h: %d)", oriUrl, u, w, h));
         return u;
     }
 
@@ -274,25 +274,25 @@ public class Image7NiuLoader {
     }
 
 
-    public Image7NiuLoader maxW() {
+    public T maxW() {
         if (getContext() == null) {
-            return this;
+            return (T) this;
         }
         this.w = getMaxW();
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader maxHalfW() {
+    public T maxHalfW() {
         if (getContext() == null) {
-            return this;
+            return (T) this;
         }
         this.w = getMaxW() / 2;
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader h2PercentW(final float percent) {
+    public T h2PercentW(final float percent) {
         this.h = (int) (this.w * percent);
-        return this;
+        return (T) this;
     }
 
 
@@ -372,42 +372,42 @@ public class Image7NiuLoader {
      * @param sigma  [0, -]
      * @return
      */
-    public Image7NiuLoader addOpBlur(final int radius, final int sigma) {
+    public T addOpBlur(final int radius, final int sigma) {
         opList.add(new Op().blur(radius, sigma));
-        return this;
+        return (T) this;
     }
 
     /**
      * @param rotateDegree [1, 360]
      * @return
      */
-    public Image7NiuLoader addOpRotate(final int rotateDegree) {
+    public T addOpRotate(final int rotateDegree) {
         opList.add(new Op().rotate(rotateDegree));
-        return this;
+        return (T) this;
     }
 
     /**
      * @return
      * @deprecated use {@link #COMMEND_FORMAT}
      */
-    public Image7NiuLoader formatJpg() {
+    public T formatJpg() {
         this.format = Format.jpg;
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader formatOrigin() {
+    public T formatOrigin() {
         this.format = Format.origin;
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader formatPng() {
+    public T formatPng() {
         this.format = Format.png;
-        return this;
+        return (T) this;
     }
 
-    public Image7NiuLoader formatWebp() {
+    public T formatWebp() {
         this.format = Format.webp;
-        return this;
+        return (T) this;
     }
 
     private Context context;
@@ -426,13 +426,17 @@ public class Image7NiuLoader {
         return this;
     }
 
-    public Image7NiuLoader defaultD(final Drawable defaultDrawable) {
+    public T defaultD(final Drawable defaultDrawable) {
         this.defaultDrawable = defaultDrawable;
-        return this;
+        return (T) this;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
+        if (resourceId == 0) {
+            return null;
+        }
+
         Drawable drawable = null;
         try {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
