@@ -1,4 +1,4 @@
-package com.liulishuo.image7niuloader.util;
+package com.liulishuo.image7niuloader.picassoloader;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -32,7 +32,7 @@ import com.squareup.picasso.Transformation;
  */
 public class PicassoLoader {
 
-    private final static String TAG = "ImageLoader";
+    private final static String TAG = "PicassoLoader";
 
     /**
      * 设置全局的默认占位图

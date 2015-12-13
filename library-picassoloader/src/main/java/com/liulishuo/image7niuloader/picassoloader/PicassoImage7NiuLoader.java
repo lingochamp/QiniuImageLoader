@@ -1,4 +1,4 @@
-package com.liulishuo.image7niuloader.util;
+package com.liulishuo.image7niuloader.picassoloader;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

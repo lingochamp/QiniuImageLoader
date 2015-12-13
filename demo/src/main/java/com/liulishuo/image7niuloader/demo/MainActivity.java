@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.liulishuo.image7niuloader.util.PicassoLoader;
+import com.liulishuo.image7niuloader.picassoloader.PicassoLoader;
 
 /**
  * Created by Jacksgong on 12/13/15.
