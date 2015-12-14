@@ -1,4 +1,4 @@
-# Image 7Niu Loader
+# QiniuImageLoader
 
 ## I. 使用
 

@@ -1,1 +1,1 @@
-include ':demo', ':library', ':library-picassoloader'
+include ':demo', ':library', ':utils-picasso'
