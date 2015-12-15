@@ -1,7 +1,6 @@
 package com.liulishuo.qiniuimageloader;
 
 import android.content.Context;
-import android.support.annotation.DimenRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
@@ -13,19 +12,19 @@ import javax.microedition.khronos.opengles.GL10;
 
 /**
  * Copyright (c) 2015 LingoChamp Inc.
- * <p/>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p/>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * <p/>
+ *
  * Created by Jacksgong on 15/8/3.
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html
@@ -76,16 +75,24 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         this.oriUrl = oriUrl;
     }
 
+    /**
+     * 指定最大宽度 为w
+     *
+     * @param w
+     * @return
+     */
     public T w(final int w) {
         this.w = w;
         return (T) this;
     }
 
     /**
-     * @param wResource
+     * 指定最大宽度
+     *
+     * @param wResource DimenRes
      * @return
      */
-    public T wR(@DimenRes final int wResource) {
+    public T wR(final int wResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -94,13 +101,25 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     }
 
+    /**
+     * 指定最大宽高
+     *
+     * @param size
+     * @return
+     */
     public T size(final int size) {
         w(size);
         h(size);
         return (T) this;
     }
 
-    public T sizeR(@DimenRes final int sizeResource) {
+    /**
+     * 指定最大宽高
+     *
+     * @param sizeResource DimenRes
+     * @return
+     */
+    public T sizeR(final int sizeResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -111,12 +130,24 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return (T) this;
     }
 
+    /**
+     * 指定最大高度
+     *
+     * @param h
+     * @return
+     */
     public T h(final int h) {
         this.h = h;
         return (T) this;
     }
 
-    public T hR(@DimenRes final int hResource) {
+    /**
+     * 指定最大高度
+     *
+     * @param hResource DimenRes
+     * @return
+     */
+    public T hR(final int hResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -125,6 +156,12 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return (T) this;
     }
 
+    /**
+     * 指定模式为mode
+     *
+     * @param mode
+     * @return
+     */
     public T mode(final int mode) {
         this.mode = mode;
         return (T) this;
@@ -132,18 +169,29 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     /**
      * {@link #mode} to {@link #MODE_FIT_XY}
+     * <p/>
+     * 指定模式为FitXY
      *
      * @return
+     * @see <url></url>https://github.com/lingochamp/QiniuImageLoader</url>
      */
     public T fitXY() {
         return mode(MODE_FIT_XY);
     }
 
+    /**
+     * 指定模式为CenterCrop
+     *
+     * @return
+     * @see <url>https://github.com/lingochamp/QiniuImageLoader</url>
+     */
     public T centerCrop() {
         return mode(MODE_CENTER_CROP);
     }
 
     /**
+     * 请求图片最大宽高为GL10.GL_MAX_TEXTURE_SIZE
+     *
      * @return
      * @see #MODE_FORCE_ORIGIN
      */
@@ -151,6 +199,12 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return mode(MODE_FORCE_ORIGIN);
     }
 
+    /**
+     * 根据七牛提供的API生成目标URL
+     *
+     * @return 目标URL
+     * @see <url>http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html</url>
+     */
     public String createQiniuUrl() {
         String u = this.oriUrl;
 
@@ -379,6 +433,8 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     private List<Op> opList = new ArrayList<>();
 
     /**
+     * 请求图片进行高斯模糊处理
+     *
      * @param radius [1, 50]
      * @param sigma  [0, -]
      * @return
@@ -389,6 +445,8 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
     /**
+     * 请求图片进行旋转处理
+     *
      * @param rotateDegree [1, 360]
      * @return
      */
@@ -398,24 +456,40 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
     /**
+     * 请求图片jpg格式
+     *
      * @return
-     * @deprecated use {@link #COMMEND_FORMAT}
      */
     public T formatJpg() {
         this.format = Format.jpg;
         return (T) this;
     }
 
+    /**
+     * 请求图片原格式
+     *
+     * @return
+     */
     public T formatOrigin() {
         this.format = Format.origin;
         return (T) this;
     }
 
+    /**
+     * 请求图片png格式
+     *
+     * @return
+     */
     public T formatPng() {
         this.format = Format.png;
         return (T) this;
     }
 
+    /**
+     * 请求图片webp格式(默认格式)
+     *
+     * @return
+     */
     public T formatWebp() {
         this.format = Format.webp;
         return (T) this;
@@ -431,6 +505,11 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
+    /**
+     * 加载图片到目标ImageView上并清理所有变量
+     *
+     * @see #attachWithNoClear()
+     */
     public void attach() {
         attachWithNoClear();
         clear();

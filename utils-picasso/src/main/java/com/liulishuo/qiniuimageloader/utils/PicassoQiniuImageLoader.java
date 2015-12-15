@@ -3,7 +3,6 @@ package com.liulishuo.qiniuimageloader.utils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.liulishuo.qiniuimageloader.QiniuImageLoader;
@@ -52,12 +51,21 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
     }
 
 
+    /**
+     * 占位图采用默认头像的占位图
+     *
+     * @return
+     * @see #DEFAULT_AVATAR_PLACE_HOLDER
+     */
     public PicassoQiniuImageLoader avatar() {
         this.isAvatar = true;
         return this;
     }
 
 
+    /**
+     * 使用Picasso加载图片到目标ImageView上，并且不清理存储的各类属性参数
+     */
     @Override
     public void attachWithNoClear() {
         if (getImageView() == null) {
@@ -93,17 +101,34 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Drawable defaultDrawable;
 
-    public PicassoQiniuImageLoader defaultD(@DrawableRes final int defaultDrawable) {
+    /**
+     * 指定占位图
+     *
+     * @param defaultDrawable DrawableRes
+     * @return
+     */
+    public PicassoQiniuImageLoader defaultD(final int defaultDrawable) {
         this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
         return this;
     }
 
+    /**
+     * 指定占位图
+     *
+     * @param defaultDrawable
+     * @return
+     */
     public PicassoQiniuImageLoader defaultD(final Drawable defaultDrawable) {
         this.defaultDrawable = defaultDrawable;
         return this;
     }
 
-    protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
+    /**
+     * @param imageView
+     * @param resourceId DrawableRes
+     * @return
+     */
+    protected Drawable getDrawable(final ImageView imageView, final int resourceId) {
         if (resourceId == 0) {
             return null;
         }
@@ -125,6 +150,12 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Target target;
 
+    /**
+     * 指定picasso的Target
+     *
+     * @param target
+     * @return
+     */
     public PicassoQiniuImageLoader target(final Target target) {
         this.target = target;
         return this;
@@ -132,6 +163,12 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Transformation transformation;
 
+    /**
+     * 指定Transformation
+     *
+     * @param transformation
+     * @return
+     */
     public PicassoQiniuImageLoader transformation(final Transformation transformation) {
         this.transformation = transformation;
         return this;
@@ -139,11 +176,20 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Callback attachCallback;
 
+    /**
+     * 指定picasso的Callback
+     *
+     * @param attachCallback
+     * @return
+     */
     public PicassoQiniuImageLoader attachCallback(final Callback attachCallback) {
         this.attachCallback = attachCallback;
         return this;
     }
 
+    /**
+     * 下载图片到本地
+     */
     @Override
     public void fetch() {
         if (getContext() == null) {
