@@ -1,7 +1,6 @@
 package com.liulishuo.qiniuimageloader.utils;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -63,7 +62,7 @@ public class PicassoLoader {
         attachToImage(imageView, url, drawable, transformation, target, callback);
     }
 
-    static void fetch(final Context context, String url, FetchCallBack callback) {
+    static void fetch(final Context context, String url, Target callback) {
         RequestCreator creator = attach(context, url);
 
         if (creator == null) {
@@ -144,22 +143,5 @@ public class PicassoLoader {
         Target get(final String originUrl, final Context context);
     }
 
-    public static class FetchCallBack implements Target {
-
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-        }
-    }
 }
 

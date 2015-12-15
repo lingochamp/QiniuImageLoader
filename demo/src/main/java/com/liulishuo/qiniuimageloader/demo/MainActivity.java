@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 .attach();
 
         PicassoLoader.createLoader(image5, MOCK_DATA_URL)
-                .maxHalfW()
+                .halfScreenW()
                 .attach();
 
 
