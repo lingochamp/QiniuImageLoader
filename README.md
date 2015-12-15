@@ -104,7 +104,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 #### 4. 支持操作请求
 
 - rotate
-- Blur
+- blur
 
 ### 接口方法说明
 
