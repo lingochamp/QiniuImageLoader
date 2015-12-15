@@ -132,15 +132,8 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Transformation transformation;
 
-    public PicassoQiniuImageLoader transform(final Transformation transformation) {
+    public PicassoQiniuImageLoader transformation(final Transformation transformation) {
         this.transformation = transformation;
-        return this;
-    }
-
-    private PicassoLoader.FetchCallBack fetchCallback;
-
-    public PicassoQiniuImageLoader fetchCallback(final PicassoLoader.FetchCallBack fetchCallback) {
-        this.fetchCallback = fetchCallback;
         return this;
     }
 
@@ -157,14 +150,13 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
             throw new InvalidParameterException(String.format("can't get context ?? url[%s]", getOriUrl()));
         }
 
-        PicassoLoader.fetch(getContext(), createQiniuUrl(), fetchCallback);
+        PicassoLoader.fetch(getContext(), createQiniuUrl(), findTarget());
     }
 
     @Override
     public void clear() {
         super.clear();
         this.attachCallback = null;
-        this.fetchCallback = null;
         this.transformation = null;
         this.target = null;
     }
