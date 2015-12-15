@@ -2,6 +2,8 @@ package com.liulishuo.qiniuimageloader.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.liulishuo.qiniuimageloader.QiniuImageLoader;
@@ -18,7 +20,7 @@ import java.security.InvalidParameterException;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,8 +36,8 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
     static int DEFAULT_AVATAR_PLACE_HOLDER = 0;
 
     /**
-     * 建议用于绑定Activity生命周期，回收网络资源所用(如Activity#onResume时，
-     *      根据target区分出其他Activity，并将他们全部暂停)
+     * 建议用于绑定Activity生命周期，回收网络资源所用
+     * (如Activity#onResume时，根据target区分出其他Activity，并将他们全部暂停)
      */
     static PicassoLoader.TargetProvider DEFAULT_TARGET_PROVIDER = null;
 
@@ -64,7 +66,7 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
         String u = createQiniuUrl();
 
-        Drawable d = getDefaultDrawable();
+        Drawable d = this.defaultDrawable;
 
         if (d == null) {
             if (isAvatar) {
@@ -87,6 +89,38 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
         }
 
         return null;
+    }
+
+    private Drawable defaultDrawable;
+
+    public PicassoQiniuImageLoader defaultD(@DrawableRes final int defaultDrawable) {
+        this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
+        return this;
+    }
+
+    public PicassoQiniuImageLoader defaultD(final Drawable defaultDrawable) {
+        this.defaultDrawable = defaultDrawable;
+        return this;
+    }
+
+    protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
+        if (resourceId == 0) {
+            return null;
+        }
+
+        Drawable drawable = null;
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                drawable = imageView.getResources().getDrawable(resourceId);
+            } else {
+                drawable = imageView.getContext().getDrawable(resourceId);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return drawable;
     }
 
     private Target target;
