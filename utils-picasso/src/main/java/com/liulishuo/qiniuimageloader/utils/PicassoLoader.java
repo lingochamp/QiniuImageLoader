@@ -18,7 +18,7 @@ import com.squareup.picasso.Transformation;
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,7 +33,7 @@ public class PicassoLoader {
     private final static String TAG = "PicassoLoader";
 
     /**
-     * 设置全局的默认占位图
+     * 设置全局默认的占位图
      *
      * @param defaultPlaceHolder
      * @param defaultAvatarPlaceHolder
@@ -44,8 +44,10 @@ public class PicassoLoader {
     }
 
     /**
+     * 设置全局默认的Target提供者
      *
      * @param provider Nullable
+     * @see PicassoQiniuImageLoader#DEFAULT_TARGET_PROVIDER
      */
     public static void setGlobalTargetProvider(final TargetProvider provider) {
         PicassoQiniuImageLoader.DEFAULT_TARGET_PROVIDER = provider;
