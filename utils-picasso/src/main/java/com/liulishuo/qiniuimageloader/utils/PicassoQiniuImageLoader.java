@@ -33,6 +33,10 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
     static int DEFAULT_PLACE_HOLDER = 0;
     static int DEFAULT_AVATAR_PLACE_HOLDER = 0;
 
+    /**
+     * 建议用于绑定Activity生命周期，回收网络资源所用(如Activity#onResume时，
+     *      根据target区分出其他Activity，并将他们全部暂停)
+     */
     static PicassoLoader.TargetProvider DEFAULT_TARGET_PROVIDER = null;
 
     private boolean isAvatar = false;
@@ -58,7 +62,7 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
             throw new InvalidParameterException(String.format("imageView must not be null! %s", getOriUrl()));
         }
 
-        String u = create7NiuUrl();
+        String u = createQiniuUrl();
 
         Drawable d = getDefaultDrawable();
 
@@ -119,7 +123,7 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
             throw new InvalidParameterException(String.format("can't get context ?? url[%s]", getOriUrl()));
         }
 
-        PicassoLoader.fetch(getContext(), create7NiuUrl(), fetchCallback);
+        PicassoLoader.fetch(getContext(), createQiniuUrl(), fetchCallback);
     }
 
     @Override

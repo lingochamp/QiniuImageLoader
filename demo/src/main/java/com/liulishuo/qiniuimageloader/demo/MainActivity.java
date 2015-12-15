@@ -20,25 +20,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         assignViews();
 
-        PicassoLoader.display7Niu(image1, MOCK_DATA_URL)
+        PicassoLoader.createLoader(image1, MOCK_DATA_URL)
                 .attach();
 
-        PicassoLoader.display7Niu(image2, MOCK_DATA_URL)
+        PicassoLoader.createLoader(image2, MOCK_DATA_URL)
                 .centerCrop()
                 .wR(R.dimen.image_2_width)
                 .attach();
 
-        PicassoLoader.display7Niu(image3, MOCK_DATA_URL)
+        PicassoLoader.createLoader(image3, MOCK_DATA_URL)
                 .size(dp2px(250))
                 .addOpBlur(40, 20)
                 .attach();
 
-        PicassoLoader.display7Niu(image4, MOCK_DATA_URL)
+        PicassoLoader.createLoader(image4, MOCK_DATA_URL)
                 .w(dp2px(270))
                 .addOpRotate(30)
                 .attach();
 
-        PicassoLoader.display7Niu(image5, MOCK_DATA_URL)
+        PicassoLoader.createLoader(image5, MOCK_DATA_URL)
                 .maxHalfW()
                 .attach();
 

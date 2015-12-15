@@ -3,7 +3,7 @@ package com.liulishuo.qiniuimageloader.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -45,23 +45,12 @@ public class PicassoLoader {
         PicassoQiniuImageLoader.DEFAULT_AVATAR_PLACE_HOLDER = defaultAvatarPlaceHolder;
     }
 
-    public static void setGlobalTargetProvider(final TargetProvider provider) {
+    public static void setGlobalTargetProvider(@Nullable final TargetProvider provider) {
         PicassoQiniuImageLoader.DEFAULT_TARGET_PROVIDER = provider;
     }
 
-    public static PicassoQiniuImageLoader display7NiuAvatar(final ImageView imageView, final String oriUrl) {
-        PicassoQiniuImageLoader image7NiuLoader = new PicassoQiniuImageLoader(imageView, oriUrl);
-        return image7NiuLoader.avatar();
-    }
-
-    public static PicassoQiniuImageLoader display7Niu(final ImageView imageView, final String oriUrl) {
+    public static PicassoQiniuImageLoader createLoader(final ImageView imageView, final String oriUrl) {
         return new PicassoQiniuImageLoader(imageView, oriUrl);
-    }
-
-    public static PicassoQiniuImageLoader display7Niu(final ImageView imageView, final String oriUrl, @DrawableRes final int defaultDrawable) {
-        PicassoQiniuImageLoader image7NiuLoader = new PicassoQiniuImageLoader(imageView, oriUrl);
-        image7NiuLoader.defaultD(defaultDrawable);
-        return image7NiuLoader;
     }
 
     static void display(ImageView imageView, String url, Drawable drawable, final Transformation transformation, Target target, Callback callback) {

@@ -17,21 +17,20 @@ import javax.microedition.khronos.opengles.GL10;
 
 /**
  * Copyright (c) 2015 LingoChamp Inc.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ * <p/>
  * Created by Jacksgong on 15/8/3.
- *
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html
  */
@@ -156,107 +155,109 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return mode(MODE_FORCE_ORIGIN);
     }
 
-    public String create7NiuUrl() {
+    public String createQiniuUrl() {
         String u = this.oriUrl;
 
-        if (is7niu(this.oriUrl)) {
+        if (!isUrl(u)) {
+            return u;
+        }
 
-            int width = this.w;
-            int height = this.h;
-            final int maxWidth = getMaxW();
-            final int maxHeight = getMaxHeight();
 
-            if (this.mode == MODE_FORCE_ORIGIN) {
-                width = GL10.GL_MAX_TEXTURE_SIZE;
-                height = GL10.GL_MAX_TEXTURE_SIZE;
+        int width = this.w;
+        int height = this.h;
+        final int maxWidth = getMaxW();
+        final int maxHeight = getMaxHeight();
+
+        if (this.mode == MODE_FORCE_ORIGIN) {
+            width = GL10.GL_MAX_TEXTURE_SIZE;
+            height = GL10.GL_MAX_TEXTURE_SIZE;
+        } else {
+            // 其中一个有效
+            width = (height <= 0 && width > 0 && width > maxWidth) ? maxWidth : width;
+            height = (width <= 0 && height > 0 && height > maxHeight) ? maxHeight : height;
+
+
+            // 两个都无效
+            width = (width <= 0 && height <= 0) ? maxWidth : width;
+
+            //两个都有效
+            if (width > 0 && height > 0) {
+                if (width > maxWidth) {
+                    height = (int) (height * ((float) maxWidth / width));
+                    width = maxWidth;
+                }
+
+                if (height > maxHeight) {
+                    width = (int) (width * ((float) maxHeight / height));
+                    height = maxHeight;
+                }
+            }
+        }
+
+
+        // size /thumbnail/<width>x<height>[>最大宽高/<最小宽高]
+        // /thumbnail/[!]<width>x<height>[r] 限定短边，生成不小于<width>x<height>的 默认不指定!与r，为限定长边
+        // %3E = URLEncoder.encoder(">", "utf-8")
+        final String maxHeightUtf8 = "%3E";
+
+        String resizeParams = "";
+        if (width > 0 || height > 0) {
+            if (width <= 0) {
+                // h > 0
+                resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
+                        // fit xy
+                        String.format("/thumbnail/x%d%s", height, maxHeightUtf8) :
+                        // center crop
+                        String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", height, height, height, height);
+
+            } else if (height <= 0) {
+                // w > 0
+                resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
+                        // fit xy
+                        String.format("/thumbnail/%dx%s", width, maxHeightUtf8) :
+                        // center crop
+                        String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", width, width, width, width);
             } else {
-                // 其中一个有效
-                width = (height <= 0 && width > 0 && width > maxWidth) ? maxWidth : width;
-                height = (width <= 0 && height > 0 && height > maxHeight) ? maxHeight : height;
+                // h > 0 && w > 0
+                resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
+                        // fit xy
+                        String.format("/thumbnail/%dx%d%s", width, height, maxHeightUtf8) :
+                        // center crop
+                        String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", width, height, width, height);
+            }
+        }
 
+        //op
+        String opParams = "";
+        for (Op op : opList) {
+            opParams += op.getOpUrlParam();
+        }
 
-                // 两个都无效
-                width = (width <= 0 && height <= 0) ? maxWidth : width;
+        // format
+        String formatParams = "";
 
-                //两个都有效
-                if (width > 0 && height > 0) {
-                    if (width > maxWidth) {
-                        height = (int) (height * ((float) maxWidth / width));
-                        width = maxWidth;
-                    }
+        switch (this.format) {
+            case webp:
+            case jpg:
+            case gif:
+            case png:
+                formatParams = String.format("/format/%s", this.format.toString());
+                break;
+            case origin:
+                break;
+        }
 
-                    if (height > maxHeight) {
-                        width = (int) (width * ((float) maxHeight / height));
-                        height = maxHeight;
-                    }
+        if (!TextUtils.isEmpty(resizeParams) || !TextUtils.isEmpty(formatParams)) {
+            if (oriUrl.contains("?ImageView") || oriUrl.contains("?imageMogr2")) {
+                Log.e(TAG, String.format("oriUrl should create 7Niu url by self, %s", oriUrl));
+
+                if (!oriUrl.contains("/format")) {
+                    u = String.format("%s%s", oriUrl, formatParams);
                 }
+            } else {
+                u = String.format("%s?imageMogr2/auto-orient%s%s%s", oriUrl, resizeParams, opParams, formatParams);
             }
 
-
-            // size /thumbnail/<width>x<height>[>最大宽高/<最小宽高]
-            // /thumbnail/[!]<width>x<height>[r] 限定短边，生成不小于<width>x<height>的 默认不指定!与r，为限定长边
-            // %3E = URLEncoder.encoder(">", "utf-8")
-            final String maxHeightUtf8 = "%3E";
-
-            String resizeParams = "";
-            if (width > 0 || height > 0) {
-                if (width <= 0) {
-                    // h > 0
-                    resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
-                            // fit xy
-                            String.format("/thumbnail/x%d%s", height, maxHeightUtf8) :
-                            // center crop
-                            String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", height, height, height, height);
-
-                } else if (height <= 0) {
-                    // w > 0
-                    resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
-                            // fit xy
-                            String.format("/thumbnail/%dx%s", width, maxHeightUtf8) :
-                            // center crop
-                            String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", width, width, width, width);
-                } else {
-                    // h > 0 && w > 0
-                    resizeParams = this.mode == MODE_FORCE_ORIGIN || this.mode == MODE_FIT_XY ?
-                            // fit xy
-                            String.format("/thumbnail/%dx%d%s", width, height, maxHeightUtf8) :
-                            // center crop
-                            String.format("/thumbnail/!%dx%dr/gravity/Center/crop/%dx%d", width, height, width, height);
-                }
-            }
-
-            //op
-            String opParams = "";
-            for (Op op : opList) {
-                opParams += op.getOpUrlParam();
-            }
-
-            // format
-            String formatParams = "";
-
-            switch (this.format) {
-                case webp:
-                case jpg:
-                case gif:
-                case png:
-                    formatParams = String.format("/format/%s", this.format.toString());
-                    break;
-                case origin:
-                    break;
-            }
-
-            if (!TextUtils.isEmpty(resizeParams) || !TextUtils.isEmpty(formatParams)) {
-                if (oriUrl.contains("?ImageView") || oriUrl.contains("?imageMogr2")) {
-                    Log.e(TAG, String.format("oriUrl should create 7Niu url by self, %s", oriUrl));
-
-                    if (!oriUrl.contains("/format")) {
-                        u = String.format("%s%s", oriUrl, formatParams);
-                    }
-                } else {
-                    u = String.format("%s?imageMogr2/auto-orient%s%s%s", oriUrl, resizeParams, opParams, formatParams);
-                }
-
-            }
         }
 
 
@@ -296,7 +297,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
 
-    private static boolean is7niu(final String url) {
+    private static boolean isUrl(final String url) {
         return !TextUtils.isEmpty(url) && url.startsWith("http");
     }
 
@@ -421,6 +422,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
     private Drawable defaultDrawable;
+
     public QiniuImageLoader defaultD(@DrawableRes final int defaultDrawable) {
         this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
         return this;
@@ -452,7 +454,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return drawable;
     }
 
-    public void attach(){
+    public void attach() {
         attachWithNoClear();
         clear();
     }
