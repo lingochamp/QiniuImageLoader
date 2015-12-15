@@ -77,9 +77,9 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 | 参数 | 默认值 | 备注
 | --- | --- | ---
-| size/w/h | 屏幕宽高 | 强制请求原图时，最大值为`GL10.GL_MAX_TEXTURE_SIZE`
+| size/w/h | 不超过屏幕宽高 | 强制请求原图时，最大值为`GL10.GL_MAX_TEXTURE_SIZE`
 | mode | FIT_XY | 见模式说明
-| format | webp | 同显示效果,webp的大小约png的30%~70%，支持格式见支持格式说明
+| format | webp | 相同显示效果,webp的大小约png的30%~70%，支持格式见支持格式说明
 | Op | 默认不带 | 默认不带操作
 
 
@@ -131,7 +131,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 #### 2. `utils-picasso`
 
-> `utils-picasso`依赖与`library`，`libarry`拥有的所有参数，`utils-picasso`都有，下面是`utils-picasso`做上层封装的时候特有的
+> `utils-picasso`依赖与`library`，`libarry`拥有的所有参数，`utils-picasso`都有，下面是`utils-picasso`做上层封装的时候增加的
 
 
 ##### 特有全局配置
@@ -144,7 +144,7 @@ PicassoLoader.setGlobalPlaceHolder(defaultPlaceHolder:int, defaultAvatarPlaceHol
 PicassoLoader.setGlobalTargetProvider(@Nullable provider:TargetProvider)
 ```
 
-##### 特有参数方法
+##### 增加的参数方法
 
 | 参数方法 | 说明
 | --- | ---
