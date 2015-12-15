@@ -161,7 +161,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
         int width = this.w;
         int height = this.h;
-        final int maxWidth = getMaxW();
+        final int maxWidth = getScreenWith();
         final int maxHeight = getMaxHeight();
 
         if (this.mode == MODE_FORCE_ORIGIN) {
@@ -271,24 +271,38 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
 
-    public T maxW() {
+    /**
+     * 宽度等于屏幕的宽度
+     *
+     * @return
+     */
+    public T screenW() {
         if (getContext() == null) {
             return (T) this;
         }
-        this.w = getMaxW();
+        this.w = getScreenWith();
         return (T) this;
     }
 
-    public T maxHalfW() {
+    /**
+     * 宽度为屏幕的宽度的一半
+     *
+     * @return
+     */
+    public T halfScreenW() {
         if (getContext() == null) {
             return (T) this;
         }
-        this.w = getMaxW() / 2;
+        this.w = getScreenWith() / 2;
         return (T) this;
     }
 
-    public T h2PercentW(final float percent) {
-        this.h = (int) (this.w * percent);
+    /**
+     * @param n n倍
+     * @return 高度会等于 宽度的n倍
+     */
+    public T wTimesN2H(final float n) {
+        this.h = (int) (this.w * n);
         return (T) this;
     }
 
@@ -409,7 +423,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     private Context context;
 
-    private int getMaxW() {
+    private int getScreenWith() {
         return getContext().getResources().getDisplayMetrics().widthPixels;
     }
 
