@@ -1,7 +1,6 @@
 package com.liulishuo.qiniuimageloader;
 
 import android.content.Context;
-import android.support.annotation.DimenRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
@@ -82,10 +81,10 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     }
 
     /**
-     * @param wResource
+     * @param wResource DimenRes
      * @return
      */
-    public T wR(@DimenRes final int wResource) {
+    public T wR(final int wResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -100,7 +99,12 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return (T) this;
     }
 
-    public T sizeR(@DimenRes final int sizeResource) {
+    /**
+     *
+     * @param sizeResource DimenRes
+     * @return
+     */
+    public T sizeR(final int sizeResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -116,7 +120,12 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return (T) this;
     }
 
-    public T hR(@DimenRes final int hResource) {
+    /**
+     *
+     * @param hResource DimenRes
+     * @return
+     */
+    public T hR(final int hResource) {
         if (getContext() == null) {
             return (T) this;
         }

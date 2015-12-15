@@ -2,7 +2,6 @@ package com.liulishuo.qiniuimageloader.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -44,7 +43,11 @@ public class PicassoLoader {
         PicassoQiniuImageLoader.DEFAULT_AVATAR_PLACE_HOLDER = defaultAvatarPlaceHolder;
     }
 
-    public static void setGlobalTargetProvider(@Nullable final TargetProvider provider) {
+    /**
+     *
+     * @param provider Nullable
+     */
+    public static void setGlobalTargetProvider(final TargetProvider provider) {
         PicassoQiniuImageLoader.DEFAULT_TARGET_PROVIDER = provider;
     }
 

@@ -3,7 +3,6 @@ package com.liulishuo.qiniuimageloader.utils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.liulishuo.qiniuimageloader.QiniuImageLoader;
@@ -93,7 +92,12 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
 
     private Drawable defaultDrawable;
 
-    public PicassoQiniuImageLoader defaultD(@DrawableRes final int defaultDrawable) {
+    /**
+     *
+     * @param defaultDrawable DrawableRes
+     * @return
+     */
+    public PicassoQiniuImageLoader defaultD(final int defaultDrawable) {
         this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
         return this;
     }
@@ -103,7 +107,13 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
         return this;
     }
 
-    protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
+    /**
+     *
+     * @param imageView
+     * @param resourceId DrawableRes
+     * @return
+     */
+    protected Drawable getDrawable(final ImageView imageView, final int resourceId) {
         if (resourceId == 0) {
             return null;
         }
