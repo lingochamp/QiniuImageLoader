@@ -1,10 +1,13 @@
 # QiniuImageLoader
 
+
 > 如何根据七牛的[图片加载API](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html)进行加更有效、更节流、更简单、更库的图片加载呢?
 
 ## I. 结果
 
 #### 1. 基本库(`library`):
+
+[![Download][qiniu_img_svg]](qiniu_img_url)
 
 ```
 new QiniuImageLoader(context, url)
@@ -22,6 +25,8 @@ new QiniuImageLoader(context, url)
 ```
 
 #### 2. 基于[Picasso](https://github.com/square/picasso)的封装工具库(`utils-picasso`)
+
+[![Download][qiniu_img_picasso_svg]][qiniu_img_picasso_url]
 
 > 使用基本库的过程中，建议参考这个工具库进行有关封装
 
@@ -184,3 +189,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[qiniu_img_svg]: https://api.bintray.com/packages/jacksgong/maven/QiniuImageLoader/images/download.svg
+[qiniu_img_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader/_latestVersion
+[qiniu_img_picasso_svg]: https://api.bintray.com/packages/jacksgong/maven/QiniuImageLoader-picassoUtils/images/download.svg
+[qiniu_img_picasso_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader-picassoUtils/_latestVersion
