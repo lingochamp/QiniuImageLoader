@@ -76,7 +76,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 #### 1. 默认值
 
 | 参数 | 默认值 | 备注
-| - | - | -
+| --- | --- | ---
 | size/w/h | 屏幕宽高 | 强制请求原图时，最大值为`GL10.GL_MAX_TEXTURE_SIZE`
 | mode | FIT_XY | 见模式说明
 | format | webp | 同显示效果,webp的大小约png的30%~70%，支持格式见支持格式说明
@@ -88,7 +88,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 > 就基本库library而言
 
 | 模式名 | url | 说明
-| -|-|-|
+| --- | --- | ---
 | CenterCrop | `/1/w/<Width>/h/<Height>` | 限定缩略图的宽最少为`<Width>`，高最少为`<Height>`，进行等比缩放，居中裁剪。转后的缩略图通常恰好是`<Width>x<Height>` 的大小（有一个边缩放的时候会因为超出矩形框而被裁剪掉多余部分）。如果只指定`w`参数或只指定 h参数，代表限定为长宽相等的正方图。
 | FitXY| `/2/w/<Width>/h/<Height>` | 限定缩略图的宽最多为`<Width>`，高最多为`<Height>`，进行等比缩放，不裁剪。如果只指定`w` 参数则表示限定宽（长自适应），只指定`h` 参数则表示限定长（宽自适应）。
 | ForceOrigin| `/1/w/<Width>/h/<Height>` | 强制需要请求原图
@@ -111,7 +111,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 #### 1. `library`:
 
 | 参数方法 | 说明
-| - | -
+| --- | ---
 | w(width:int)/wR(@DimenRes) | 指定最大宽度
 | h(width:int)/hR(@DimenRes) | 指定最大高度
 | size(size:int)/sizeR(@DimenRes) | 指定最大宽高
@@ -147,7 +147,7 @@ PicassoLoader.setGlobalTargetProvider(@Nullable provider:TargetProvider)
 ##### 特有参数方法
 
 | 参数方法 | 说明
-| - | -
+| --- | ---
 | avatar(void) | 占位图采用默认头像的占位图
 | defaultD(defaultDrawable:Drawable)/defaultD(@DrawableRes) | 指定占位图
 | target(target:com.squareup.picasso.Target) | 指定picasso的Target
