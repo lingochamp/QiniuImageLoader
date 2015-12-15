@@ -1,11 +1,7 @@
 package com.liulishuo.qiniuimageloader;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.DimenRes;
-import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
@@ -421,39 +417,6 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         return getContext().getResources().getDisplayMetrics().heightPixels;
     }
 
-    private Drawable defaultDrawable;
-
-    public QiniuImageLoader defaultD(@DrawableRes final int defaultDrawable) {
-        this.defaultDrawable = getDrawable(getImageView(), defaultDrawable);
-        return this;
-    }
-
-    public T defaultD(final Drawable defaultDrawable) {
-        this.defaultDrawable = defaultDrawable;
-        return (T) this;
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    protected Drawable getDrawable(final ImageView imageView, @DrawableRes final int resourceId) {
-        if (resourceId == 0) {
-            return null;
-        }
-
-        Drawable drawable = null;
-        try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                drawable = imageView.getResources().getDrawable(resourceId);
-            } else {
-                drawable = imageView.getContext().getDrawable(resourceId);
-            }
-
-        } catch (Exception e) {
-            Log.e(TAG, "image7Niu getDrawable err", e);
-        }
-
-        return drawable;
-    }
-
     public void attach() {
         attachWithNoClear();
         clear();
@@ -497,10 +460,6 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     protected Format getFormat() {
         return format;
-    }
-
-    protected Drawable getDefaultDrawable() {
-        return defaultDrawable;
     }
 
     protected List<Op> getOpList() {
