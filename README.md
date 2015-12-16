@@ -7,7 +7,7 @@
 
 #### 1. 基本库(`library`):
 
-[![Download][qiniu_img_svg]](qiniu_img_url)
+[![Download][qiniu_img_svg]][qiniu_img_url]
 
 ```
 new QiniuImageLoader(context, url)
