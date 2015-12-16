@@ -56,7 +56,18 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 ```
 
-## II. 出发点
+## II. 使用
+
+```
+dependencies {
+  // 基本库
+  compile 'com.liulishuo.qiniuimageloader:library:1.0.0'
+  // 可不引: 基于基本库与picasso做上层封装，可作为案例，也可直接使用
+  compile 'com.liulishuo.qiniuimageloader:utils-picasso:1.0.0'
+}
+```
+
+## III. 出发点
 
 > 结合七牛提供的丰富的图片请求api，在客户端层进行封装，实现与上层到下层图片加载库的中间层URL生成的封装。
 
@@ -76,7 +87,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 - 所有的操作(高斯模糊、选择、centerCrop、fitXY等)都放到云端一次性处理，减少本地cpu资源占用
 
 
-## III. 说明
+## IV. 说明
 
 #### 1. 默认值
 
