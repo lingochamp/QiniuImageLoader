@@ -5,6 +5,9 @@
 
 ## I. 结果
 
+![][demo_1_jpg]
+![][demo_2_jpg]
+
 #### 1. 基本库(`library`):
 
 [![Download][qiniu_img_svg]][qiniu_img_url]
@@ -205,3 +208,5 @@ limitations under the License.
 [qiniu_img_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader/_latestVersion
 [qiniu_img_picasso_svg]: https://api.bintray.com/packages/jacksgong/maven/QiniuImageLoader-picassoUtils/images/download.svg
 [qiniu_img_picasso_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader-picassoUtils/_latestVersion
+[demo_1_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_1.jpg
+[demo_2_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_2.jpg
