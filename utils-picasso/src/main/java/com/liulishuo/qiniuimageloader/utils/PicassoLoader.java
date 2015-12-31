@@ -1,16 +1,3 @@
-package com.liulishuo.qiniuimageloader.utils;
-
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
-import com.squareup.picasso.Target;
-import com.squareup.picasso.Transformation;
-
 /**
  * Copyright (c) 2015 LingoChamp Inc.
  *
@@ -25,7 +12,21 @@ import com.squareup.picasso.Transformation;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ */
+package com.liulishuo.qiniuimageloader.utils;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+import com.squareup.picasso.Target;
+import com.squareup.picasso.Transformation;
+
+/**
  * Created by Jacksgong on 12/13/15.
  */
 public class PicassoLoader {

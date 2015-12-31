@@ -1,15 +1,3 @@
-package com.liulishuo.qiniuimageloader;
-
-import android.content.Context;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.microedition.khronos.opengles.GL10;
-
 /**
  * Copyright (c) 2015 LingoChamp Inc.
  *
@@ -24,7 +12,20 @@ import javax.microedition.khronos.opengles.GL10;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ */
+package com.liulishuo.qiniuimageloader;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.microedition.khronos.opengles.GL10;
+
+/**
  * Created by Jacksgong on 15/8/3.
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html
