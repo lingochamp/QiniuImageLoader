@@ -28,7 +28,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by Jacksgong on 15/8/3.
  *
- * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html
+ * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html
  */
 public class QiniuImageLoader<T extends QiniuImageLoader> {
 

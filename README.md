@@ -1,7 +1,9 @@
 # QiniuImageLoader
 
 
-> 如何根据七牛的[图片加载API](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imageview2.html)进行加更有效、更节流、更简单、更库的图片加载呢?
+> 如何根据七牛的[图片加载API](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html)进行加更有效、更节流、更简单、更库的图片加载呢?
+
+> PS: 如果你不是使用七牛，也不用担心，只要你兼容相关API也可以支持(下文会提到)。
 
 ## I. 结果
 
@@ -70,7 +72,23 @@ dependencies {
 }
 ```
 
-## III. 出发点
+## III. 目前已经适配API
+
+> 如果你使用的不是七牛，只要你的API也是相同的格式，也可以
+
+> 具体生成，可以参考[QiniuImageLoader](https://github.com/lingochamp/QiniuImageLoader/blob/master/library/src/main/java/com/liulishuo/qiniuimageloader/QiniuImageLoader.java)中的`#createQiniuUrl`
+
+参考[图片高级处理（imageMogr2）](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html)，目前已支持参数:
+
+- `/auto-orient`
+- `/thumbnail/<imageSizeGeometry>`
+- `/gravity/<gravityType>`
+- `/crop/<imageSizeAndOffsetGeometry>`
+- `/format/<destinationImageFormat>`
+- `/blur/<radius>x<sigma>`
+- `/rotate/<rotateDegree>`
+
+## IV. 出发点
 
 > 结合七牛提供的丰富的图片请求api，在客户端层进行封装，实现与上层到下层图片加载库的中间层URL生成的封装。
 
@@ -90,7 +108,7 @@ dependencies {
 - 所有的操作(高斯模糊、选择、centerCrop、fitXY等)都放到云端一次性处理，减少本地cpu资源占用
 
 
-## IV. 说明
+## V. 说明
 
 #### 1. 默认值
 
