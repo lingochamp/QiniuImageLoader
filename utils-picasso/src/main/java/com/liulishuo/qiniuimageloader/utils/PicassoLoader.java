@@ -58,6 +58,17 @@ public class PicassoLoader {
         return new PicassoQiniuImageLoader(imageView, oriUrl);
     }
 
+    /**
+     * 用于创建一个只为了下载图片而不是为了显示的Loader
+     *
+     * @see PicassoQiniuImageLoader#fetch()
+     * <p/>
+     * 如果调用{@link PicassoQiniuImageLoader#attach()} 由于没有提供ImageView将会crash
+     */
+    public static PicassoQiniuImageLoader createLoader(final Context context, final String oriUrl) {
+        return new PicassoQiniuImageLoader(context, oriUrl);
+    }
+
     static void display(ImageView imageView, String url, Drawable drawable, final Transformation transformation, Target target, Callback callback) {
         if (imageView == null) {
             return;
