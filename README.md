@@ -66,9 +66,9 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 ```
 dependencies {
   // 基本库
-  compile 'com.liulishuo.qiniuimageloader:library:1.0.0'
+  compile 'com.liulishuo.qiniuimageloader:library:1.0.1'
   // 可不引: 基于基本库与picasso做上层封装，可作为案例，也可直接使用
-  compile 'com.liulishuo.qiniuimageloader:utils-picasso:1.0.0'
+  compile 'com.liulishuo.qiniuimageloader:utils-picasso:1.0.1'
 }
 ```
 
