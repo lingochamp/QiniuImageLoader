@@ -3,6 +3,8 @@
 
 > 如何根据七牛的[图片加载API](http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html)进行加更有效、更节流、更简单、更库的图片加载呢?
 
+[![Build Status][build_status_svg]][build_status_link]
+
 > PS: 如果你不是使用七牛，也不用担心，只要你兼容相关API也可以支持(下文会提到)。
 
 ## I. 结果
@@ -228,3 +230,5 @@ limitations under the License.
 [qiniu_img_picasso_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader-picassoUtils/_latestVersion
 [demo_1_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_1.jpg
 [demo_2_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_2.jpg
+[build_status_svg]: https://travis-ci.org/lingochamp/QiniuImageLoader.svg?branch=master
+[build_status_link]: https://travis-ci.org/lingochamp/QiniuImageLoader
