@@ -6,4 +6,7 @@ android:
     - android-23
     - extra
 
+after_script:
+    - cat /home/travis/build/lingochamp/QiniuImageLoader/demo/build/outputs/lint-results.xml
+
 sudo: false
