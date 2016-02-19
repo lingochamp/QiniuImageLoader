@@ -16,7 +16,7 @@
 
 [![Download][qiniu_img_svg]][qiniu_img_url]
 
-```
+```java
 new QiniuImageLoader(context, url)
         .centerCrop() // 居中裁剪
         .formatWebp() // 请求下载格式为webp
@@ -39,7 +39,7 @@ new QiniuImageLoader(context, url)
 
 > 该库基于库与picasso，进行上层封装，对接基本库和picasso
 
-```
+```java
 
 // 设置全局默认图片占位符，与头像占位符
 PicassoLoader.setGlobalPlaceHolder(R.drawable.default_place_holder, R.drawable.default_avatar_place_holder);
@@ -65,7 +65,7 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 ## II. 使用
 
-```
+```groovy
 dependencies {
   // 基本库
   compile 'com.liulishuo.qiniuimageloader:library:1.0.1'
@@ -174,7 +174,7 @@ dependencies {
 
 
 ##### 特有全局配置
-```
+```java
 
 // 设置全局的默认占位图，与默认头像的占位图
 PicassoLoader.setGlobalPlaceHolder(defaultPlaceHolder:int, defaultAvatarPlaceHolder:int)
