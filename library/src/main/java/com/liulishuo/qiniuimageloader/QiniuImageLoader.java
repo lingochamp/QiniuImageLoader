@@ -299,7 +299,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
         }
 
         if (!TextUtils.isEmpty(resizeParams) || !TextUtils.isEmpty(formatParams)) {
-            if (oriUrl.contains("?ImageView") || oriUrl.contains("?imageMogr2")) {
+            if (oriUrl.contains("?ImageView") || oriUrl.contains("?imageMogr2") || oriUrl.contains("?imageView2")) {
                 Log.e(TAG, String.format("oriUrl should create 7Niu url by self, %s", oriUrl));
 
                 if (!oriUrl.contains("/format")) {
