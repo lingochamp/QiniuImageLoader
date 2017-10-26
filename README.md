@@ -79,9 +79,9 @@ allprojects {
 ```
 dependencies {
   // 基本库
-  compile 'com.github.lingochamp.QiniuImageLoader:library:1.0.2'
+  compile 'com.github.lingochamp.QiniuImageLoader:library:1.0.3'
   // 可不引: 基于基本库与picasso做上层封装，可作为案例，也可直接使用
-  compile 'com.github.lingochamp.QiniuImageLoader:utils-picasso:1.0.2'
+  compile 'com.github.lingochamp.QiniuImageLoader:utils-picasso:1.0.3'
 }
 ```
 
