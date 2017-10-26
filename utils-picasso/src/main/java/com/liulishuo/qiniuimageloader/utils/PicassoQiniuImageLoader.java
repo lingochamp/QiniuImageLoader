@@ -205,6 +205,5 @@ public class PicassoQiniuImageLoader extends QiniuImageLoader<PicassoQiniuImageL
         super.clear();
         this.attachCallback = null;
         this.transformation = null;
-        this.target = null;
     }
 }
