@@ -65,17 +65,6 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 ## II. 使用
 
-1.0.2开始使用 jitpack.io repository:
-
-```
-allprojects {
- repositories {
-    jcenter()
-    maven { url "https://jitpack.io" }
- }
-}
-```
-
 ```
 dependencies {
   // 基本库

@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.lingochamp'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -8,8 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 7
-        targetSdkVersion COMPILE_SDK_VERSION as int
-        versionCode VERSION_CODE as int
         versionName VERSION_NAME as String
     }
     buildTypes {
@@ -25,9 +21,4 @@ dependencies {
     compile project(':library')
 }
 
-if (isForUpload2Maven()) {
-    println ':library:include upload 2 maven methods'
-    apply from: 'https://raw.githubusercontent.com/Jacksgong/JCenter/master/installv1.gradle'
-    apply from: 'https://raw.githubusercontent.com/Jacksgong/JCenter/master/bintray_suffix1.gradle'
-    apply from: 'https://raw.githubusercontent.com/Jacksgong/JCenter/master/license.gradle'
-}
+apply from: rootProject.file('gradle/mvn-push.gradle')
