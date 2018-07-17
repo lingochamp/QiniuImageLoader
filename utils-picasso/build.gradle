@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.lingochamp'
+group = 'com.github.lingochamp'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 14
         targetSdkVersion COMPILE_SDK_VERSION as int
         versionCode VERSION_CODE as int
         versionName VERSION_NAME as String
@@ -21,8 +21,8 @@ android {
 }
 
 dependencies {
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile project(':library')
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    api project(':library')
 }
 
 if (isForUpload2Maven()) {
