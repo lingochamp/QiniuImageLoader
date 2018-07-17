@@ -5,7 +5,7 @@ android {
     buildToolsVersion BUILD_TOOLS_VERSION as String
 
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 14
         versionName VERSION_NAME as String
     }
     buildTypes {
@@ -17,8 +17,8 @@ android {
 }
 
 dependencies {
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile project(':library')
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    api project(':library')
 }
 
 apply from: rootProject.file('gradle/mvn-push.gradle')
