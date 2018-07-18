@@ -1,5 +1,10 @@
 # Change Log
 ---
+
+### Version 1.0.4
+
+- adapter interface for picasso 2.7
+
 ### Version 1.0.3
 
 - fix custom target not trigger onBitmapLoaded for the first time
