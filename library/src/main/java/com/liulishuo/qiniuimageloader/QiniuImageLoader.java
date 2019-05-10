@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2015 LingoChamp Inc.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import javax.microedition.khronos.opengles.GL10;
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html
  */
-public class QiniuImageLoader<T extends QiniuImageLoader> {
+public abstract class QiniuImageLoader<T extends QiniuImageLoader> {
 
     private final static String TAG = "QiniuImageLoader";
 
@@ -519,18 +519,12 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     /**
      * for download & attach image 2 imageView
      */
-    public void attachWithNoClear() {
-        throw new UnsupportedOperationException(
-                "Required method instantiateItem was not overridden");
-    }
+    public abstract void attachWithNoClear();
 
     /**
      * for just download image
      */
-    public void fetch() {
-        throw new UnsupportedOperationException(
-                "Required method instantiateItem was not overridden");
-    }
+    public abstract void fetch();
 
     protected ImageView getImageView() {
         return imageView;
