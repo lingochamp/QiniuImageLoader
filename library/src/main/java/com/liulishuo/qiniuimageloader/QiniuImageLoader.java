@@ -36,7 +36,7 @@ import javax.microedition.khronos.opengles.GL10;
  *
  * @Api: http://developer.qiniu.com/docs/v6/api/reference/fop/image/imagemogr2.html
  */
-public abstract class QiniuImageLoader<T extends QiniuImageLoader> {
+public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     private final static String TAG = "QiniuImageLoader";
 
@@ -548,12 +548,16 @@ public abstract class QiniuImageLoader<T extends QiniuImageLoader> {
         attachWithNoClear(createQiniuUrl());
     }
 
-    protected abstract void attachWithNoClear(String url);
+    protected void attachWithNoClear(String url) {
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
+    }
 
     /**
      * for just download image
      */
-    public abstract void fetch();
+    public void fetch() {
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
+    }
 
     protected ImageView getImageView() {
         return imageView;
