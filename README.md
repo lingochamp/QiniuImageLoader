@@ -9,9 +9,9 @@
 
 ## I. 结果
 
-![][demo_1_jpg]
-![][demo_2_jpg]
-![][demo_3_png]
+||||
+|:---:|:---:|:---:|
+|![][demo_1_jpg]|![][demo_2_jpg]|![][demo_3_png]|
 
 #### 1. 基本库(`library`):
 
@@ -245,6 +245,6 @@ limitations under the License.
 [qiniu_img_picasso_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader-picassoUtils/_latestVersion
 [demo_1_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_1.jpg
 [demo_2_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_2.jpg
-[demo_3_png]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_3.png
+[demo_3_png]: ./art/demo_3.png
 [build_status_svg]: https://travis-ci.org/lingochamp/QiniuImageLoader.svg?branch=master
 [build_status_link]: https://travis-ci.org/lingochamp/QiniuImageLoader
