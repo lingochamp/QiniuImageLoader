@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2015 LingoChamp Inc.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,10 +16,16 @@
 package com.liulishuo.qiniuimageloader;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.DimenRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +45,13 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
     private int h = 0;
     private String oriUrl;
     private ImageView imageView;
+    protected boolean isAvatar = false;
+
+    public static int DEFAULT_PLACE_HOLDER = 0;
+    public static int DEFAULT_AVATAR_PLACE_HOLDER = 0;
+    @Nullable
+    protected Drawable defaultDrawable;
+
 
     /**
      * 限定缩略图的宽最少为<Width>，高最少为<Height>，进行等比缩放，居中裁剪。
@@ -93,7 +106,7 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
      * @param wResource DimenRes
      * @return
      */
-    public T wR(final int wResource) {
+    public T wR(@DimenRes final int wResource) {
         if (getContext() == null) {
             return (T) this;
         }
@@ -520,16 +533,30 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
      * for download & attach image 2 imageView
      */
     public void attachWithNoClear() {
-        throw new UnsupportedOperationException(
-                "Required method instantiateItem was not overridden");
+        if (getImageView() == null) {
+            throw new InvalidParameterException(String.format("imageView must not be null! %s", getOriUrl()));
+        }
+
+        if (this.defaultDrawable == null) {
+            if (isAvatar) {
+                this.defaultDrawable = getDrawable(DEFAULT_AVATAR_PLACE_HOLDER);
+            } else {
+                this.defaultDrawable = getDrawable(DEFAULT_PLACE_HOLDER);
+            }
+        }
+
+        attachWithNoClear(createQiniuUrl());
+    }
+
+    protected void attachWithNoClear(String url) {
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
     }
 
     /**
      * for just download image
      */
     public void fetch() {
-        throw new UnsupportedOperationException(
-                "Required method instantiateItem was not overridden");
+        throw new UnsupportedOperationException("Required method instantiateItem was not overridden");
     }
 
     protected ImageView getImageView() {
@@ -558,5 +585,52 @@ public class QiniuImageLoader<T extends QiniuImageLoader> {
 
     protected List<Op> getOpList() {
         return opList;
+    }
+
+    @Nullable
+    private Drawable getDrawable(final int resourceId) {
+        if (resourceId == 0 || imageView == null) {
+            return null;
+        }
+        Drawable drawable = null;
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                drawable = imageView.getResources().getDrawable(resourceId);
+            } else {
+                drawable = imageView.getContext().getDrawable(resourceId);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return drawable;
+    }
+
+    /**
+     * 指定占位图
+     *
+     * @param defaultDrawable placeholder for image
+     * @return T
+     */
+    public T defaultD(final Drawable defaultDrawable) {
+        this.defaultDrawable = defaultDrawable;
+        return (T) this;
+    }
+
+    public T defaultD(@DrawableRes final int defaultDrawableRes) {
+        this.defaultDrawable = getDrawable(defaultDrawableRes);
+        return (T) this;
+    }
+
+    /**
+     * 占位图采用默认头像的占位图
+     *
+     * @return T
+     * @see #DEFAULT_AVATAR_PLACE_HOLDER
+     */
+    public T avatar() {
+        this.isAvatar = true;
+        return (T) this;
     }
 }

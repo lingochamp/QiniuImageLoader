@@ -9,8 +9,9 @@
 
 ## I. 结果
 
-![][demo_1_jpg]
-![][demo_2_jpg]
+||||
+|:---:|:---:|:---:|
+|![][demo_1_jpg]|![][demo_2_jpg]|![][demo_3_png]|
 
 #### 1. 基本库(`library`):
 
@@ -63,6 +64,17 @@ PicassoLoader.display7Niu(imageview2, MOCK_DATA_URL)
 
 ```
 
+#### 3. 基于[Glide](https://github.com/bumptech/glide)的封装工具库(`utils-glide`)
+
+[![Download][qiniu_img_picasso_svg]][qiniu_img_picasso_url]
+
+```java
+GlideLoader.createLoader(image8, MOCK_DATA_URL)
+                .size(dp2px(250))
+                .addOpBlur(40, 20)
+                .attach();
+```
+
 ## II. 使用
 
 ```
@@ -71,6 +83,8 @@ dependencies {
   implementation 'com.liulishuo.qiniuimageloader:library:1.0.4'
   // 可不引: 基于基本库与picasso做上层封装，可作为案例，也可直接使用
   implementation 'com.liulishuo.qiniuimageloader:utils-picasso:1.0.4'
+  // 可不引: 基于 glide 封装
+  implementation 'com.liulishuo.qiniuimageloader:utils-glide:1.0.4'
 }
 ```
 
@@ -172,6 +186,7 @@ dependencies {
 
 > `utils-picasso`依赖与`library`，`libarry`拥有的所有参数，`utils-picasso`都有，下面是`utils-picasso`做上层封装的时候增加的
 
+> `utils-glide` 与此类似
 
 ##### 特有全局配置
 ```
@@ -230,5 +245,6 @@ limitations under the License.
 [qiniu_img_picasso_url]: https://bintray.com/jacksgong/maven/QiniuImageLoader-picassoUtils/_latestVersion
 [demo_1_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_1.jpg
 [demo_2_jpg]: https://github.com/lingochamp/QiniuImageLoader/raw/master/art/demo_2.jpg
+[demo_3_png]: ./art/demo_3.png
 [build_status_svg]: https://travis-ci.org/lingochamp/QiniuImageLoader.svg?branch=master
 [build_status_link]: https://travis-ci.org/lingochamp/QiniuImageLoader

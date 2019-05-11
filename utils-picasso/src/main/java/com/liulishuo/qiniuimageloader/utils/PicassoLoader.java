@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.liulishuo.qiniuimageloader.QiniuImageLoader;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -40,8 +41,8 @@ public class PicassoLoader {
      * @param defaultAvatarPlaceHolder
      */
     public static void setGlobalPlaceHolder(final int defaultPlaceHolder, final int defaultAvatarPlaceHolder) {
-        PicassoQiniuImageLoader.DEFAULT_PLACE_HOLDER = defaultPlaceHolder;
-        PicassoQiniuImageLoader.DEFAULT_AVATAR_PLACE_HOLDER = defaultAvatarPlaceHolder;
+        QiniuImageLoader.DEFAULT_PLACE_HOLDER = defaultPlaceHolder;
+        QiniuImageLoader.DEFAULT_AVATAR_PLACE_HOLDER = defaultAvatarPlaceHolder;
     }
 
     /**
