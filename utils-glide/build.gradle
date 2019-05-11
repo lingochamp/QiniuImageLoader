@@ -29,3 +29,8 @@ dependencies {
 
 
 apply from: rootProject.file('gradle/mvn-push.gradle')
+
+// Avoid Kotlin docs error
+tasks.withType(Javadoc) {
+    enabled = false
+}
