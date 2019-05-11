@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.liulishuo.qiniuimageloader.glide.GlideLoader;
 import com.liulishuo.qiniuimageloader.utils.PicassoLoader;
 
 /**
  * Created by Jacksgong on 12/13/15.
  */
 public class MainActivity extends AppCompatActivity {
-    private static String MOCK_DATA_URL = "http://7xjww9.com1.z0.glb.clouddn.com/20130221114001385.jpg";
+    private static String MOCK_DATA_URL = "http://image.youcute.cn/17-7-7/50670860.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,27 @@ public class MainActivity extends AppCompatActivity {
                 .halfScreenW()
                 .attach();
 
+        GlideLoader.createLoader(image6, MOCK_DATA_URL)
+                .attach();
 
+        GlideLoader.createLoader(image7, MOCK_DATA_URL)
+                .centerCrop()
+                .wR(R.dimen.image_2_width)
+                .attach();
+
+        GlideLoader.createLoader(image8, MOCK_DATA_URL)
+                .size(dp2px(250))
+                .addOpBlur(40, 20)
+                .attach();
+
+        GlideLoader.createLoader(image9, MOCK_DATA_URL)
+                .w(dp2px(270))
+                .addOpRotate(30)
+                .attach();
+
+        GlideLoader.createLoader(image10, MOCK_DATA_URL)
+                .halfScreenW()
+                .attach();
     }
 
     public int dp2px(float dpValue) {
@@ -59,12 +80,23 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image4;
     private ImageView image5;
 
+    private ImageView image6;
+    private ImageView image7;
+    private ImageView image8;
+    private ImageView image9;
+    private ImageView image10;
+
     private void assignViews() {
-        image1 = (ImageView) findViewById(R.id.image_1);
-        image2 = (ImageView) findViewById(R.id.image_2);
-        image3 = (ImageView) findViewById(R.id.image_3);
-        image4 = (ImageView) findViewById(R.id.image_4);
-        image5 = (ImageView) findViewById(R.id.image_5);
+        image1 = findViewById(R.id.image_1);
+        image2 = findViewById(R.id.image_2);
+        image3 = findViewById(R.id.image_3);
+        image4 = findViewById(R.id.image_4);
+        image5 = findViewById(R.id.image_5);
+        image6 = findViewById(R.id.image_6);
+        image7 = findViewById(R.id.image_7);
+        image8 = findViewById(R.id.image_8);
+        image9 = findViewById(R.id.image_9);
+        image10 = findViewById(R.id.image_10);
     }
 
     @Override
